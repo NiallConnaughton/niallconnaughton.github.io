@@ -1,0 +1,49 @@
+#canvas:hover {
+	cursor: crosshair;
+}
+
+.dialog {
+	position: absolute;
+	background-color: #333333;
+	border: solid 1px red;
+	z-index: 10;
+
+	font-family: berlin sans FB;
+	color: red;
+	width: auto;
+	height: auto;
+	padding: 20px;
+}
+
+.centerText {
+	text-align: center;
+}
+
+.finalScores {
+	font-size: 1.2em;
+}
+
+#finalScore {
+	padding-right: 170px;
+}
+
+.gameoverTitle {
+	font-size: 5em;
+}
+
+.dialogHidden {
+	visibility: hidden;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+canvas {
+	position: absolute;
+	border: 1px solid black;
+}

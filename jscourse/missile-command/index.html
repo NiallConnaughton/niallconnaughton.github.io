@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Missile Command</title>
+    <link rel="stylesheet" type="text/css" href="missilecommand.css">
+</head>
+<body>
+	<canvas width="800" height="600" id="canvas"></canvas>
+
+    <div id="gameover" class="dialog dialogHidden">
+        <span class="gameoverTitle">GAME OVER</span><br/>
+        <p class="finalScores">Final score: <span id="finalScore"></span>
+            Final level: <span id="finalLevel"></span></p>
+        <p class="centerText">Winners do not take drugs</p>
+    </div>
+
+    <div id="mainMenu" class="dialog dialogHidden">
+        <span class="gameoverTitle">Missile Command</span>
+        <p>
+            <button id="startNewGameButton">Start Game</button>
+            <button id="replayLastGameButton">Replay Last Game</button>
+        </p>
+    </div>
+
+    <div id="newHighScore" class="dialog dialogHidden">
+        <span class="gameoverTitle">High Score</span>
+        <p>
+            Enter your name
+            <input type="text" id="highScoreName"></input>
+        </p>
+    </div>
+
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="rxjs-master/dist/rx.all.js"></script> 
+    <script type="text/javascript" src="js/launchprovider.js"></script> 
+    <script type="text/javascript" src="js/replaylaunchprovider.js"></script> 
+    <script type="text/javascript" src="js/renderer.js"></script> 
+    <script type="text/javascript" src="js/location.js"></script> 
+    <script type="text/javascript" src="js/missile.js"></script> 
+    <script type="text/javascript" src="js/bunker.js"></script> 
+    <script type="text/javascript" src="js/city.js"></script> 
+	<script type="text/javascript" src="js/explosion.js"></script> 
+    <script type="text/javascript" src="js/level.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="lodash.js"></script>
+</body>
+</html>
