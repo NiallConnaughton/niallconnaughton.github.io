@@ -60,7 +60,7 @@ Level.prototype.initialize = function(isDemo) {
 								  			 .do(this.recordMissileLaunch.bind(this));
 
 	this.subscriptions.add(detonations.subscribe(this.objectExploded.bind(this)));
-	this.subscriptions.add(missileLaunches.subscribe(this.launchMissile.bind(this)));
+	this.subscriptions.add(missileLaunches.subscribe(this.launchMissile.bind(this), function (err) { console.log(err); }));
 
 	var start = Date.now();
 }

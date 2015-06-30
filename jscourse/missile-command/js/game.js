@@ -40,6 +40,8 @@ Game.prototype.replayLastGame = function() {
 	this.levels = game.levels;
 	this.isReplay = true;
 
+	this.rehydrateLocations(game);
+
 	var launchProvider = new ReplayLaunchProvider(game);
 
 	var updateRequests = this.updateRequests.map(function(elapsed) { return elapsed * demomodeSpeedup; });
@@ -49,11 +51,11 @@ Game.prototype.replayLastGame = function() {
 	this.startLevel();
 }
 
-Game.prototype.loadGame = function(savedGame) {
-	var game = JSON.parse(savedGame);
-
-	this.levels = new Array(game.levels.length);
-	console.log('Replaying ' + this.levels.length + ' levels');
+Game.prototype.rehydrateLocations = function(savedGame) {
+	// when the saved game is parsed from JSON, all the missile source and destination locations have all the
+	// properties of a location object, but they don't have the prototype functions. This causes errors when
+	// calling function on the missiles' source and target.
+	// so we extend the loaded objects with the location's prototype. There's probably a less sucky way to do this.
 
 	var launchedMissiles = _(game.levels)
 						.pluck('launches')
@@ -67,11 +69,21 @@ Game.prototype.loadGame = function(savedGame) {
 
 	// find a better way of doing this	
 	locations.forEach(function(l) { $.extend(l, Location.prototype); } );
+}
+
+Game.prototype.loadGame = function(savedGame) {
+	var game = JSON.parse(savedGame);
+
+	this.levels = new Array(game.levels.length);
+	console.log('Replaying ' + this.levels.length + ' levels');
+
+	this.rehydrateLocations(game);
 
 	return game;	
 }
 
 Game.prototype.startLevel = function() {
+	console.log('Starting level ' + this.level.level);
 	this.level.initialize(this.isReplay);
 
 	this.updateRequests.takeUntil(this.level.levelFinished)
